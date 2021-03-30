@@ -51,10 +51,10 @@ def new_entry(request, topic_id):
 
 def edit_entry(request, entry_id):
     # 既存の記事を編集する
-    entry = Entry.object.get(id=entry_id)
+    entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
 
-    if request != 'POST':
+    if request.method != 'POST':
         # 初回リクエスト時は現在の記事の内容がフォームに埋め込まれている
         form = EntryForm(instance=entry)
     else:
