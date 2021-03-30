@@ -36,7 +36,7 @@ def new_topic(request):
 def new_entry(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
 
-    if request.method != "POST":
+    if request.method != 'POST':
         form = EntryForm()
     else:
         form = EntryForm(data=request.POST)
@@ -47,4 +47,4 @@ def new_entry(request, topic_id):
             return redirect('learning_logs:topic', topic_id=topic_id)
     
     context = {'topic': topic, 'form': form}
-    return render(redirect, 'learning_logs/new_entry.html', context)
+    return render(request, 'learning_logs/new_entry.html', context)
