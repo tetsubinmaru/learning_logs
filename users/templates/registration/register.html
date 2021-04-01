@@ -1,11 +1,17 @@
 {% extends "learning_logs/base.html" %}
+{% load bootstrap4 %}
+
+{% block page_header %}
+    <h3>さあ、学習ノートを使ってみよう！</h3>
+{% endblock page_header %}
 
 {% block content %}
-    <form method="POST" action="{% url 'users:register' %}">
+    <form method="POST" action="{% url 'users:register' %}" class="form">
         {% csrf_token %}
-        {{ form.as_p }}
-
-        <button name="submit">登録する</button>
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button name="submit" class="btn btn-primary">登録する</button>
+        {% endbuttons %}
         <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
     </form>
 
